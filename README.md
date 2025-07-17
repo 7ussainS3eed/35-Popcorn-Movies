@@ -1,3 +1,7 @@
+Walkthrough Video...<br>https://drive.google.com/file/d/1XahKkgNf5wF7n_8HeefcpMtzY8YWwsw4/view?usp=drive_link
+<br><br>
+Live Demo (Not fully responsive, best on PC)...<br>https://7ussains3eed.github.io/35-Popcorn-Movies/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
