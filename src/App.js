@@ -9,7 +9,7 @@ export default function App() {
   const [selectedId, setSelectedId] = useState(null);
   const [watched, setWatched] = useState(function () {
     const storedValue = localStorage.getItem("WatchedLocSto");
-    return JSON.parse(storedValue);
+    return storedValue ? JSON.parse(storedValue) : [];
   });
 
   function handleSelectMovie(id) {
@@ -85,7 +85,10 @@ export default function App() {
       <Main>
         <Box>
           {!isLoading && !error && (
-            <MovieList movies={movies} handleSelectMovie={handleSelectMovie} />
+            <MovieList
+              movies={movies ?? []}
+              handleSelectMovie={handleSelectMovie}
+            />
           )}
           {isLoading && <Loader />}
           {error && <ErrorMessage message={error} />}
@@ -219,7 +222,7 @@ function WatchedSummary({ watched }) {
     watched.map((movie) => movie.passedRate)
   ).toFixed(1);
   const avgRuntime = average(
-    watched.map((movie) => +movie.Runtime.split(" ")[0])
+    watched.map((movie) => +(movie.Runtime?.split(" ")[0] ?? 0))
   ).toFixed(1);
   return (
     <div className="summary">
@@ -331,7 +334,7 @@ function MovieDetails({
             <button className="btn-back" onClick={handleCloseMovie}>
               &larr;
             </button>
-            <img src={shownMovie.Poster} alt="Poster" />
+            <img src={shownMovie?.Poster} alt="Poster" />
             <div className="details-overview">
               <h2>{shownMovie.Title}</h2>
               <p>
